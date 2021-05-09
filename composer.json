@@ -1,0 +1,19 @@
+{
+    "name": "artur/foo-bar-qix",
+    "description": "",
+    "authors": [
+        {
+            "name": "Artūrs Vīksne",
+            "email": "artursviksne04@gmail.com"
+        }
+    ],
+    "require": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app",
+            "Test\\": "test"
+        }
+    }
+}
