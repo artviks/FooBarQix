@@ -8,7 +8,7 @@ use App\Models\Input;
 
 interface ElementInterface
 {
-    public function name(): ?string;
-
     public function handle(Input $input): void;
+
+    public function name(): ?string;
 }

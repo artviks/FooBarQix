@@ -8,13 +8,17 @@ use App\Models\Input;
 
 class Qix implements ElementInterface
 {
-    public function name(): ?string
-    {
-        // TODO: Implement name() method.
-    }
+    private int $isMultipleOf = 7;
+    private string $name = 'Qix';
+    private bool $isQix = false;
 
     public function handle(Input $input): void
     {
-        // TODO: Implement handle() method.
+        $this->isQix = $input->get() % $this->isMultipleOf === 0;
+    }
+
+    public function name(): ?string
+    {
+        return $this->isQix ? $this->name : null;
     }
 }
