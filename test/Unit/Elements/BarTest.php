@@ -22,7 +22,7 @@ class BarTest extends TestCase
     public function testNoName(): void
     {
         $input = new Input('2');
-        $bar = new Bar($input);
+        $bar = new Bar();
         $bar->handle($input);
 
         self::assertEquals(null, $bar->name());

@@ -12,7 +12,7 @@ class FooTest extends TestCase
 {
     public function testName(): void
     {
-        $input = new Input('5');
+        $input = new Input('3');
         $foo = new Foo();
         $foo->handle($input);
 

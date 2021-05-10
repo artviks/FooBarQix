@@ -4,6 +4,7 @@
 namespace Test\Unit;
 
 
+use App\Models\App;
 use App\Models\Elements\Bar;
 use App\Models\Elements\ElementCollection;
 use App\Models\Elements\Foo;
