@@ -11,19 +11,30 @@ class QixTest extends TestCase
 {
     public function testName(): void
     {
-        $input = new Input('7');
-        $qix = new Qix();
-        $qix->handle($input);
+        $qix = new Qix;
 
         self::assertEquals('Qix', $qix->name());
     }
 
-    public function testNoName(): void
+    public function testMultiplier(): void
     {
-        $input = new Input('2');
-        $qix = new Qix();
-        $qix->handle($input);
+        $input = new Input('7');
+        $falseInput = new Input('8');
+        $qix = new Qix;
 
-        self::assertEquals(null, $qix->name());
+        self::assertTrue($qix->multiplier($input));
+        self::assertNotTrue($qix->multiplier($falseInput));
+    }
+
+    public function testContains(): void
+    {
+        $input1 = new Input('27');
+        $input2 = new Input('77');
+        $falseInput = new Input('1');
+        $qix = new Qix;
+
+        self::assertEquals(1, $qix->contains($input1));
+        self::assertEquals(2, $qix->contains($input2));
+        self::assertEquals(0, $qix->contains($falseInput));
     }
 }

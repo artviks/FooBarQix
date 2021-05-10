@@ -34,8 +34,8 @@ class AppTest extends TestCase
         self::assertEquals('Foo', $app->execute($inputFoo));
         self::assertEquals('Bar', $app->execute($inputBar));
         self::assertEquals('Qix', $app->execute($inputQix));
-        self::assertEquals('FooBar', $app->execute($inputFooBar));
-        self::assertEquals('FooBarQix', $app->execute($inputFooBarQix));
+        self::assertEquals('FooBar.Bar', $app->execute($inputFooBar));
+        self::assertEquals('FooBarQix.Bar', $app->execute($inputFooBarQix));
         self::assertEquals('2', $app->execute($input));
     }
 }
