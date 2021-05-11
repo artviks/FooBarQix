@@ -4,21 +4,17 @@
 namespace App\Models\Elements;
 
 
-use App\Models\Input;
-
-class Foo implements ElementInterface
+class Foo extends Element implements ElementInterface
 {
-    private int $isMultipleOf = 3;
-    private string $name = 'Foo';
-    private bool $isFoo = false;
-
-    public function handle(Input $input): void
+    public function __construct(int $multiplier, int $contains)
     {
-        $this->isFoo = $input->get() % $this->isMultipleOf === 0;
+        parent::__construct($multiplier, $contains);
+        $this->setName();
     }
 
-    public function name(): ?string
+    protected function setName(): void
     {
-        return $this->isFoo ? $this->name : null;
+        $name = explode('\\', self::class);
+        $this->name = end($name);
     }
 }

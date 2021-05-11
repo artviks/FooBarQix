@@ -1,12 +1,14 @@
 <?php
 
 
-namespace App\Models;
+namespace App\Services;
 
 
 use App\Models\Elements\ElementCollection;
+use App\Models\Elements\ElementInterface;
+use App\Models\Input;
 
-class App
+class MultiplierService
 {
     private ElementCollection $elements;
 
@@ -18,13 +20,21 @@ class App
     public function execute(Input $input): string
     {
         $result = '';
-
         foreach ($this->elements->collection() as $element)
         {
-            $element->handle($input);
-            $result .= $element->name() ?? '';
+            $result .= $this->isMultiplier($element, $input);
         }
 
         return $result ?: $input->getString();
+    }
+
+    private function isMultiplier(ElementInterface $element, Input $input): string
+    {
+        if ($input->get() % $element->multiplier() !== 0)
+        {
+            return '';
+        }
+
+        return $element->name();
     }
 }

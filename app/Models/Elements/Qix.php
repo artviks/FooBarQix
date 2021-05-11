@@ -4,21 +4,17 @@
 namespace App\Models\Elements;
 
 
-use App\Models\Input;
-
-class Qix implements ElementInterface
+class Qix extends Element implements ElementInterface
 {
-    private int $isMultipleOf = 7;
-    private string $name = 'Qix';
-    private bool $isQix = false;
-
-    public function handle(Input $input): void
+    public function __construct(int $multiplier, int $contains)
     {
-        $this->isQix = $input->get() % $this->isMultipleOf === 0;
+        parent::__construct($multiplier, $contains);
+        $this->setName();
     }
 
-    public function name(): ?string
+    protected function setName(): void
     {
-        return $this->isQix ? $this->name : null;
+        $name = explode('\\', self::class);
+        $this->name = end($name);
     }
 }

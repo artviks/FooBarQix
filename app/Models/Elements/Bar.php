@@ -4,21 +4,17 @@
 namespace App\Models\Elements;
 
 
-use App\Models\Input;
-
-class Bar implements ElementInterface
+class Bar extends Element implements ElementInterface
 {
-    private int $isMultipleOf = 5;
-    private string $name = 'Bar';
-    private bool $isBar = false;
-
-    public function handle(Input $input): void
+    public function __construct(int $multiplier, int $contains)
     {
-        $this->isBar = $input->get() % $this->isMultipleOf === 0;
+        parent::__construct($multiplier, $contains);
+        $this->setName();
     }
 
-    public function name(): ?string
+    protected function setName(): void
     {
-        return $this->isBar ? $this->name : null;
+        $name = explode('\\', self::class);
+        $this->name = end($name);
     }
 }
