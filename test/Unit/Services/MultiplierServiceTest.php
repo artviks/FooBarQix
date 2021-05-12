@@ -22,7 +22,8 @@ class MultiplierServiceTest extends TestCase
             new Bar(5,5),
             new Qix(7,7)
         ]);
-        $service = new MultiplierService($elements);
+        $separator = ', ';
+        $service = new MultiplierService($elements, $separator);
 
         $inputFoo = new Input('6');
         $inputBar = new Input('5');
@@ -34,8 +35,8 @@ class MultiplierServiceTest extends TestCase
         self::assertEquals('Foo', $service->execute($inputFoo));
         self::assertEquals('Bar', $service->execute($inputBar));
         self::assertEquals('Qix', $service->execute($inputQix));
-        self::assertEquals('FooBar', $service->execute($inputFooBar));
-        self::assertEquals('FooBarQix', $service->execute($inputFooBarQix));
+        self::assertEquals('Foo, Bar', $service->execute($inputFooBar));
+        self::assertEquals('Foo, Bar, Qix', $service->execute($inputFooBarQix));
         self::assertEquals('2', $service->execute($input));
     }
 }

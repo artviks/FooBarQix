@@ -6,7 +6,7 @@ namespace App\Models\Elements;
 
 use App\Models\Input;
 
-class Element
+abstract class Element
 {
     protected string $name;
     private int $multiplier;

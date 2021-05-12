@@ -1,6 +1,6 @@
 <?php
 
-use App\App;
+use App\Services\FooBarQixService;
 use App\Models\Elements\Bar;
 use App\Models\Elements\ElementCollection;
 use App\Models\Elements\Foo;
@@ -29,6 +29,6 @@ $elements->addMany([
 $multiplierService = new MultiplierService($elements);
 $occurrenceService = new OccurrenceService($elements);
 
-$app = new App($multiplierService, $occurrenceService);
+$app = new FooBarQixService($multiplierService, $occurrenceService);
 
 echo $app->run($input);
