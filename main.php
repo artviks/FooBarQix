@@ -1,34 +1,25 @@
 <?php
 
-use App\Services\FooBarQixService;
-use App\Models\Elements\Bar;
-use App\Models\Elements\ElementCollection;
-use App\Models\Elements\Foo;
-use App\Models\Elements\Qix;
-use App\Models\Input;
-use App\Services\MultiplierService;
-use App\Services\OccurrenceService;
-
 require "vendor/autoload.php";
 
 
-$userInput = readline('Provide positive integer: ');
+$serviceChoice = readline('Choose your service (Enter 0 for FooBarQix or 1 for InfQixFoo): ');
+if ((int)$serviceChoice < 0 || (int)$serviceChoice > 1 || !ctype_digit($serviceChoice)) {
+    exit('Invalid input!');
+}
 
-if ($userInput === '0' || ! ctype_digit($userInput) )
-{
+$userInput = readline('Provide positive integer: ');
+if ($userInput === '0' || !ctype_digit($userInput)) {
     exit('Input is not positive integer!');
 }
 
-$input = new Input($userInput);
-$elements = new ElementCollection();
-$elements->addMany([
-    new Foo(3,3),
-    new Bar(5,5),
-    new Qix(7,7)
-]);
-$multiplierService = new MultiplierService($elements);
-$occurrenceService = new OccurrenceService($elements);
+$input = new \App\Models\Input($userInput);
+$services = [
+    \App\Services\FooBarQixService::class,
+    \App\Services\InfQixFooService::class
+];
 
-$app = new FooBarQixService($multiplierService, $occurrenceService);
+$container = require "core/bootstrap.php";
+$service = $container->get($services[(int)$serviceChoice]);
 
-echo $app->run($input);
+echo $service->execute($input);

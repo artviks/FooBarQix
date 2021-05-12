@@ -11,10 +11,12 @@ use App\Models\Input;
 class MultiplierService
 {
     private ElementCollection $elements;
+    private string $separator;
 
-    public function __construct(ElementCollection $elements)
+    public function __construct(ElementCollection $elements, string $separator)
     {
         $this->elements = $elements;
+        $this->separator = $separator;
     }
 
     public function execute(Input $input): string
@@ -22,10 +24,11 @@ class MultiplierService
         $result = '';
         foreach ($this->elements->collection() as $element)
         {
-            $result .= $this->isMultiplier($element, $input);
+            $multiplier = $this->isMultiplier($element, $input);
+            $result .= $multiplier ? $multiplier . $this->separator : '';
         }
 
-        return $result ?: $input->getString();
+        return rtrim($result, $this->separator) ?: $input->getString();
     }
 
     private function isMultiplier(ElementInterface $element, Input $input): string

@@ -10,14 +10,17 @@ class FooBarQixService
 {
     private MultiplierService $multiplierService;
     private OccurrenceService $occurrenceService;
+    private string $separator;
 
     public function __construct(
         MultiplierService $multiplierService,
-        OccurrenceService $occurrenceService
+        OccurrenceService $occurrenceService,
+        string $separator
     )
     {
         $this->multiplierService = $multiplierService;
         $this->occurrenceService = $occurrenceService;
+        $this->separator = $separator;
     }
 
     public function execute(Input $input): string
@@ -30,7 +33,6 @@ class FooBarQixService
             return $multipliers;
         }
 
-        return $multipliers . '.' . $occurrences;
+        return $multipliers . $this->separator . $occurrences;
     }
-
 }
