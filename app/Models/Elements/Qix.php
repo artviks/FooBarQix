@@ -6,7 +6,7 @@ namespace App\Models\Elements;
 
 class Qix extends Element implements ElementInterface
 {
-    public function __construct(int $multiplier, int $contains)
+    public function __construct(int $multiplier, string $contains)
     {
         parent::__construct($multiplier, $contains);
         $this->setName();

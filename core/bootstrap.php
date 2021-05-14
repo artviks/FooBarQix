@@ -16,10 +16,10 @@ $fooBarQixMultiplierSeparator = ', ';
 $infQixFooMultiplierSeparator = '; ';
 $mainSeparator = ' . ';
 
-$inf = new Inf(8,8);
-$qix = new Qix(7,7);
-$foo = new Foo(3, 3);
-$bar = new Bar(5,5);
+$inf = new Inf(8,'8', 8);
+$qix = new Qix(7,'7');
+$foo = new Foo(3, '3');
+$bar = new Bar(5,'5');
 
 $elementsFooBarQix = new ElementCollection();
 $elementsFooBarQix->addMany([$foo, $bar, $qix]);
@@ -43,7 +43,8 @@ $container->add('FooBarQixOccurrences', OccurrenceService::class)
 $container->add('InfQixFooMultiplier', MultiplierService::class)
     ->addArguments([
         $infMultiplierElements,
-        $infQixFooMultiplierSeparator
+        $infQixFooMultiplierSeparator,
+        $inf
     ]);
 $container->add('InfQixFooOccurrences', OccurrenceService::class)
     ->addArgument($infOccurrenceElements);

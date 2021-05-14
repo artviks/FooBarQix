@@ -15,7 +15,7 @@ class InfQixFooServiceTest extends TestCase
         $container = require '../../../core/bootstrap.php';
         $service = $container->get(InfQixFooService::class);
 
-        $inputFoo = new Input('6');
+        $inputInfInf = new Input('88');
         $inputInf = new Input('8');
         $inputQix = new Input('7');
         $inputInfQix = new Input('56');
@@ -23,8 +23,8 @@ class InfQixFooServiceTest extends TestCase
         $inputLarge = new Input('123456789');
         $input = new Input('2');
 
-        self::assertEquals('Foo', $service->execute($inputFoo));
-        self::assertEquals('Inf . Inf', $service->execute($inputInf));
+        self::assertEquals('Inf . InfInfInf', $service->execute($inputInfInf));
+        self::assertEquals('Inf . InfInf', $service->execute($inputInf));
         self::assertEquals('Qix . Qix', $service->execute($inputQix));
         self::assertEquals('Inf; Qix', $service->execute($inputInfQix));
         self::assertEquals('Inf; Qix; Foo . Inf', $service->execute($inputInfQixFoo));

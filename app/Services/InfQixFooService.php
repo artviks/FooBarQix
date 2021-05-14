@@ -27,12 +27,14 @@ class InfQixFooService
     {
         $multipliers = $this->multiplierService->execute($input);
         $occurrences = $this->occurrenceService->execute($input);
+        $sumMultiplier = $this->multiplierService->sumMultiplier();
+        $this->multiplierService->setSumMultiplier();
 
         if (! $occurrences)
         {
             return $multipliers;
         }
 
-        return $multipliers . $this->separator . $occurrences;
+        return $multipliers . $this->separator . $occurrences . $sumMultiplier;
     }
 }
